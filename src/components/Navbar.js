@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,7 +14,12 @@ export default function ButtonAppBar() {
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
             Captain's Log
           </Typography>
-          <Button color="inherit">New Log</Button>
+          <Button color="inherit">
+            <a href="/logs">Logs</a>
+          </Button>
+          <Button color="inherit">
+            <a href="/logs/new">New Log</a>
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -10,8 +10,9 @@ function App() {
   return (
     <div className="app">
       <Router>
+        <Navbar />
+
         <Routes>
-          <Navbar />
           <Route path="/" element={<Home />} />
           <Route path="/logs" element={<Logs />} />
           <Route path="/logs/:index" element={<Log />} />
