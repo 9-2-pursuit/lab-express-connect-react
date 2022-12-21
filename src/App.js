@@ -1,21 +1,27 @@
-import axios, { Axios } from "axios";
-import { useState, useEffect } from "react";
+//DEPENDENCES
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//PAGES
+import Index from "./Pages/Index";
+import Home from "./Pages/Home";
+
+//COMPONENTS
+import Nav from "./Components/Nav";
+
 function App() {
-
-  const API = process.env.REACT_APP_API_URL
-  const [logs, setLogs] = useState([])
-
-  useEffect(() => {
-axios.get(`${API}/logs`)
-.then((response) => {
-  console.log(response)
-})
-  })
-
-
-
-
-  return <div>Hello World</div>;
+  return (
+    <div className="App">
+  <Router>
+  <Nav />
+    <main>
+      <Routes>
+        <Route path="/" element={ <Home/> } />
+        <Route path="/logs" element={ <Index/> } /> 
+      </Routes>
+    </main>
+  </Router>
+  </div>
+  )
 }
 
 export default App;
