@@ -22,9 +22,10 @@ export default function Log() {
 
   return (
     <div className="log-container">
+      <h2>Show</h2>
       <div className="card">
         <h1>
-          {log.title} By {log.captainName}
+          {log.title} - By {log.captainName}
         </h1>
         <h3>{log.post}</h3>
         <h4>Days since last crisis: {log.daysSinceLastCrisis}</h4>
