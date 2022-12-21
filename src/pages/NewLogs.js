@@ -1,138 +1,93 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-// mui
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import ForestIcon from "@mui/icons-material/Forest";
+const API = process.env.REACT_APP_API_URL;
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+export default function NewLogs() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    captainName: "",
+    title: "",
+    post: "",
+    mistakesWereMadeToday: false,
+    daysSinceLastCrisis: 0,
+  });
 
-const theme = createTheme();
-
-export default function NewLog() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const handleChange = (e) => {
+    const newObj = { ...formData };
+    console.log(e.target.name);
+    if (e.target.type === "checkbox") {
+      newObj.mistakesWereMadeToday = !newObj.mistakesWereMadeToday;
+    } else if (e.target.id === "daysSinceLastCrisis") {
+      newObj[e.target.id] = Number(e.target.value);
+    } else {
+      newObj[e.target.id] = e.target.value;
+    }
+    setFormData(newObj);
+    console.log(formData);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    axios
+      .post(`${API}/logs`, formData)
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/logs");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  console.log(formData);
+
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <ForestIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            New Log
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="name"
-                  label="Captain name"
-                  name="name"
-                  autoComplete="name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="title"
-                  label="Title"
-                  name="title"
-                  autoComplete="tile"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="days"
-                  label="Days Since Last Crisis"
-                  name="days"
-                  autoComplete="days"
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="post"
-                  label="Post"
-                  name="post"
-                  multiline
-                  rows={3}
-                  autoComplete="post"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="Mistakes Were Made Today"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Submit{" "}
-            </Button>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+    <div className="new-log">
+      <h1>New</h1>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="captainName">Captain's Name</label>
+        <input
+          type="text"
+          id="captainName"
+          onChange={(e) => handleChange(e)}
+          name="name"
+          value={formData.captainName}
+          required
+        />
+        <label htmlFor="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          onChange={handleChange}
+          name="title"
+          value={formData.title}
+          required
+        />
+        <label htmlFor="post">Post</label>
+        <textarea
+          name="post"
+          id="post"
+          cols="30"
+          rows="10"
+          value={formData.post}
+          onChange={handleChange}
+          required
+        ></textarea>
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
+        <input type="number" id="daysSinceLastCrisis" onChange={handleChange} />
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
+        <input
+          type="checkbox"
+          id="mistakesWereMadeToday"
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <button>Submit</button>
+      </form>
+    </div>
   );
 }

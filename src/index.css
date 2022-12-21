@@ -28,3 +28,37 @@ a {
   padding: 30px;
   border-radius: 10px;
 }
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.new-log {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.new-log form {
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.new-log form button {
+  display: block;
+  padding: 10px 15px;
+  width: 40%;
+  margin: 0 auto;
+}
+
+input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 25px;
+}
+textarea {
+  width: 100%;
+  margin-bottom: 25px;
+}

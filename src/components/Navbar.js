@@ -15,10 +15,10 @@ export default function ButtonAppBar() {
             Captain's Log
           </Typography>
           <Button color="inherit">
-            <a href="/logs">Logs</a>
+            <Link to="/logs">Logs</Link>
           </Button>
           <Button color="inherit">
-            <a href="/logs/new">New Log</a>
+            <Link to="/logs/new">New Log</Link>
           </Button>
         </Toolbar>
       </AppBar>

@@ -18,7 +18,7 @@ export default function Log() {
       .get(`${API}/logs/${index}`)
       .then((data) => setLog(data.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [index]);
 
   return (
     <div className="log-container">
