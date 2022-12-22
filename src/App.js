@@ -5,6 +5,7 @@ import Logs from "./pages/Logs";
 import Log from "./pages/Log";
 import NewLog from "./pages/NewLogs";
 import EditLog from "./pages/EditLog";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/logs/:index" element={<Log />} />
           <Route path="/logs/new" element={<NewLog />} />
           <Route path="/logs/:index/edit" element={<EditLog />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
