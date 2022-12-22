@@ -13,7 +13,9 @@ export default function LogDetails() {
       .then((response) => {
         setLog(response.data);
       })
-      .catch((e) => console.log(e));
+      .catch(() => {
+        navigate("/not-found");
+      });
   }, [index]);
 
   function handleDelete() {
