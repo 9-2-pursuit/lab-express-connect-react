@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 // mui
 import { styled } from "@mui/material/styles";
@@ -47,7 +48,12 @@ export default function Logs() {
   console.log(logs);
 
   return (
-    <div className="Logs">
+    <motion.div
+      className="Logs"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
+    >
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -88,6 +94,6 @@ export default function Logs() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </motion.div>
   );
 }

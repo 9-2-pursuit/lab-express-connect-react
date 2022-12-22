@@ -1,15 +1,21 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="home">
+    <motion.div
+      className="new-log"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
+    >
       <Container maxWidth="md" sx={{ textAlign: "center", mt: 8 }}>
         <Typography variant="h1" gutterBottom>
           Welcome to Captain's Log
         </Typography>
       </Container>
-    </div>
+    </motion.div>
   );
 }

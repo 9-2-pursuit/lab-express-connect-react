@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -45,7 +46,12 @@ export default function NewLogs() {
   console.log(formData);
 
   return (
-    <div className="new-log">
+    <motion.div
+      className="new-log"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
+    >
       <h1>New</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="captainName">Captain's Name</label>
@@ -92,6 +98,6 @@ export default function NewLogs() {
         <br />
         <button>Submit</button>
       </form>
-    </div>
+    </motion.div>
   );
 }

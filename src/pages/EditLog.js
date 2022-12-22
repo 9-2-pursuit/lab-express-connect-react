@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -51,7 +52,12 @@ export default function EditLog() {
   };
 
   return (
-    <div className="edit-log">
+    <motion.div
+      className="new-log"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
+    >
       <h1>Edit</h1>
       <form onSubmit={onSubmit}>
         <label htmlFor="captainName">Captain's Name</label>
@@ -102,6 +108,6 @@ export default function EditLog() {
       <Link to="/logs">
         <button className="back-button">Back</button>
       </Link>
-    </div>
+    </motion.div>
   );
 }

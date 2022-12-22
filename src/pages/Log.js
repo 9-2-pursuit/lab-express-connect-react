@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EditIcon from "@mui/icons-material/Edit";
+import { motion } from "framer-motion";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -29,7 +30,12 @@ export default function Log() {
   };
 
   return (
-    <div className="log-container">
+    <motion.div
+      className="new-log"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
+    >
       <h2>Show</h2>
       <div className="card">
         <h1>
@@ -67,6 +73,6 @@ export default function Log() {
           Delete
         </Button>
       </Stack>
-    </div>
+    </motion.div>
   );
 }
