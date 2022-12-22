@@ -16,7 +16,7 @@ export default function LogDetails() {
       .catch(() => {
         navigate("/not-found");
       });
-  }, [index]);
+  }, [index, navigate]);
 
   function handleDelete() {
     axios
