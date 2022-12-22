@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Log({ log, i }) {
   return (
-    <tr>
+    <tr className="Log">
       <td>{log.mistakesWereMadeToday ? (
         <span>🎇</span>
       ) : (
