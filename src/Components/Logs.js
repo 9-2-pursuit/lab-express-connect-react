@@ -1,6 +1,7 @@
 import Log from "./Log"
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -15,14 +16,14 @@ function Logs() {
   }, []);
 ;
   return (
-    <div className="logs">
+    <div className="logs text-center">
       <section>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Mistakes</th>
               <th>Captain Name</th>
-              <th>See this log</th>
+              <th>Edit Log</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +31,7 @@ function Logs() {
               return <Log key={index} log={log} index={index} />;
             })}
           </tbody>
-        </table>
+        </Table>
       </section>
     </div>
   );
