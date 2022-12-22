@@ -9,7 +9,7 @@ export default function NewLogForm() {
         title: "",
         post: "",
         mistakesWereMadeToday: false,
-        daysSinceLastCrisis: 0
+        daysSinceLastCrisis: ""
     })
 
     const navigate = useNavigate();
@@ -33,23 +33,54 @@ export default function NewLogForm() {
         }).catch(e => console.log(e))
     }
   return (
-    <div> New Log
+    <div> 
+        <h1>New Log</h1>
       <form>
-        <label> Captain's Name
-            <input type="text" />
-        </label>
-        <label> Title
-            <input type="text" />
-        </label>
-        <label> Post
-            <input type="text" />
-        </label>
-        <label> Days Since Last Crisis
-            <input type="text" />
-        </label>
-        <label> Mistakes were made today:
-            <input type="text" />
-        </label>
+        <label htmlFor='captainName'>Captain's Name</label>
+            <input 
+            id="captainName" 
+            value={log.captainName} 
+            type="text"
+            onChange={handleTextChange}
+            placeholder="Jack Sparrow"
+            required />
+        
+        <label htmlFor='title'>Title</label>
+            <input 
+                id="title"
+                value={log.title}
+                type="text"
+                onChange={handleTextChange}
+                required
+                />
+        
+        <label htmlFor='post'>Post</label>
+            <input 
+            id="post"
+            value={log.post}
+            type="text"
+            onChange={handleTextChange}
+            required
+             />
+        
+        <label htmlFor='daysSinceLastCrisis'>Days Since Last Crisis</label>
+            <input 
+            id="daysSinceLastCrisis"
+            value={log.daysSinceLastCrisis}
+            type="text"
+            onChange={handleTextChange}
+            placeholder="0" />
+        
+        <label htmlFor='mistakesWereMadeToday'>Mistakes were made today:</label>
+        <input 
+            id="mistakesWereMadeToday"
+            type="checkbox" 
+            onChange={handleCheckboxChange}
+            checked={log.mistakesWereMadeToday}
+        />
+        <br />
+        <input type="submit" />
+        
       </form>
     </div>
   )

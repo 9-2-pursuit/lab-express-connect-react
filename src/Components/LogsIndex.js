@@ -23,7 +23,7 @@ export default function LogsIndex() {
       <h1>List of all the logs</h1>
       <ul>
         {logs.map((log, i) => {
-          return <Log log={log} i={i} />;
+          return <Log key={i} log={log} i={i} />;
         })}
       </ul>
     </div>
