@@ -35,7 +35,7 @@ export default function NewLogForm() {
   return (
     <div> 
         <h1>New Log</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor='captainName'>Captain's Name</label>
             <input 
             id="captainName" 
@@ -55,21 +55,28 @@ export default function NewLogForm() {
                 />
         
         <label htmlFor='post'>Post</label>
-            <input 
+        <textarea
+            id="post"
+            value={log.post}
+            onChange={handleTextChange}
+            rows="5"
+            cols="33"
+        ></textarea>
+            {/* <input 
             id="post"
             value={log.post}
             type="text"
             onChange={handleTextChange}
             required
-             />
+             /> */}
         
         <label htmlFor='daysSinceLastCrisis'>Days Since Last Crisis</label>
             <input 
             id="daysSinceLastCrisis"
             value={log.daysSinceLastCrisis}
-            type="text"
+            type="number"
             onChange={handleTextChange}
-            placeholder="0" />
+             />
         
         <label htmlFor='mistakesWereMadeToday'>Mistakes were made today:</label>
         <input 
