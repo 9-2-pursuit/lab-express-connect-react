@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <div>
       <Link to="/">Captain's Log</Link>
-      <button onClick={navigate(`/logs/new`)}>New Log</button>
+      <button onClick={() => navigate(`/logs/new`)}>New Log</button>
     </div>
   )
 }
