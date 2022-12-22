@@ -4,7 +4,7 @@ export default function NavBar() {
 
   return (
     <div>
-      <Link to="/">Captain's Log</Link>
+      <Link to="/logs">Captain's Log</Link>
       
         <button>
             <Link to="/logs/new">New Log</Link>

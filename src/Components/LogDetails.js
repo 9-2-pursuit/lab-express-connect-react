@@ -20,9 +20,10 @@ export default function LogDetails() {
   return (
     <div className="Log">
       <div className="LogCard">
-        <h1>
+        <h1>Show</h1>
+        <h2>
           {log.title} - By {log.captainName}
-        </h1>
+        </h2>
         <p>{log.post}</p>
         <p>Days since last crisis: {log.daysSinceLastCrisis}</p>
         <p>Mistakes made today: {log.mistakesWereMadeToday ? "Yes" : "No"}</p>
