@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 const API = process.env.REACT_APP_API_URL;
 
-export default function NewLogForm() {
+export default function EditLogForm() {
     const [log, setLog] = useState({
         captainName: "",
         title: "",
@@ -11,6 +11,18 @@ export default function NewLogForm() {
         mistakesWereMadeToday: false,
         daysSinceLastCrisis: ""
     })
+
+    const { index } = useParams();
+
+    useEffect(() => {
+        axios.get(`${API}/logs/${index}`)
+        .then(response => {
+            setLog(response.data)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    }, [index])
 
     const navigate = useNavigate();
 
@@ -22,19 +34,24 @@ export default function NewLogForm() {
         setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday })
     }
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        addLog(log)
+    function updateLog() {
+        axios.put(`${API}/logs/${index}`, log)
+        .then(response => {
+            console.log(response.data)
+            setLog(response.data)
+            navigate(`/logs/${index}`)
+        })
+        .catch(e => console.log(e))
     }
 
-    function addLog(newLog) {
-        axios.post(`${API}/logs`, log).then(response => {
-            navigate(`/logs`)
-        }).catch(e => console.log(e))
+    function handleSubmit(e) {
+        e.preventDefault()
+        updateLog()
     }
+
   return (
     <div> 
-        <h1>New Log</h1>
+        <h1>Edit Log</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='captainName'>Captain's Name</label>
             <input 
@@ -87,6 +104,7 @@ export default function NewLogForm() {
         />
         <br />
         <Link to="/logs"><button>Back</button></Link>
+        
         <input type="submit" />
         
       </form>
