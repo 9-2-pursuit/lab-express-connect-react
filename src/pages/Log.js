@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ const API = process.env.REACT_APP_API_URL;
 export default function Log() {
   const [log, setLog] = useState([]);
   const { index } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -19,6 +20,13 @@ export default function Log() {
       .then((data) => setLog(data.data))
       .catch((err) => console.log(err));
   }, [index]);
+
+  const handleDelete = () => {
+    axios
+      .delete(`${API}/logs/${index}`)
+      .then((res) => navigate("/logs"))
+      .catch(console.error);
+  };
 
   return (
     <div className="log-container">
@@ -50,15 +58,14 @@ export default function Log() {
           </Button>
         </Link>
 
-        <Link to="/">
-          <Button
-            variant="outlined"
-            sx={{ px: 10, py: 1.2 }}
-            startIcon={<DeleteIcon />}
-          >
-            Delete
-          </Button>
-        </Link>
+        <Button
+          variant="outlined"
+          sx={{ px: 10, py: 1.2 }}
+          startIcon={<DeleteIcon />}
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
       </Stack>
     </div>
   );

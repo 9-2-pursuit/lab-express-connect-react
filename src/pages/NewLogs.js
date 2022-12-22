@@ -77,13 +77,17 @@ export default function NewLogs() {
           required
         ></textarea>
         <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
-        <input type="number" id="daysSinceLastCrisis" onChange={handleChange} />
+        <input
+          type="number"
+          id="daysSinceLastCrisis"
+          onChange={handleChange}
+          value={formData.daysSinceLastCrisis}
+        />
         <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
         <input
           type="checkbox"
           id="mistakesWereMadeToday"
           onChange={handleChange}
-          required
         />
         <br />
         <button>Submit</button>
