@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const API = process.env.REACT_APP_API_URL;
 
 export default function LogDetails() {
   const [log, setLog] = useState({});
   const { index } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`${API}/logs/${index}`)
@@ -15,7 +16,14 @@ export default function LogDetails() {
       .catch((e) => console.log(e));
   }, [index]);
 
-  function handleDelete() {}
+  function handleDelete() {
+    axios
+      .delete(`${API}/logs/${index}`)
+      .then((response) => {
+        navigate("/logs");
+      })
+      .catch((e) => console.log(e));
+  }
 
   return (
     <div className="Log">
