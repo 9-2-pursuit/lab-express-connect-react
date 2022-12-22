@@ -1,5 +1,6 @@
 import NavBar from "./Components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
 import LogsIndex from "./Components/LogsIndex";
 import LogDetails from "./Components/LogDetails";
 import NewLogForm from "./Components/NewLogForm";
@@ -11,7 +12,7 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<LogsIndex />} />
+          <Route path="/" element={<Home />} />
           <Route path="/logs" element={<LogsIndex />} />
           <Route path="/logs/:index" element={<LogDetails />} />
           <Route path="/logs/new" element={<NewLogForm />} />
