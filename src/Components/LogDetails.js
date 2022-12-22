@@ -16,9 +16,10 @@ export default function LogDetails() {
   }, [index]);
 
   function handleDelete() {}
+
   return (
-    <div className="logDetails">
-      <div className="logDetailsCard">
+    <div className="Log">
+      <div className="LogCard">
         <h1>
           {log.title} - By {log.captainName}
         </h1>
