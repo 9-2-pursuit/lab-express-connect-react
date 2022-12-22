@@ -67,20 +67,18 @@ export default function Logs() {
           <TableBody>
             {logs.map((log, index) => (
               <StyledTableRow key={log.mistake}>
-                <StyledTableCell component="th" scope="row">
-                  {log.post}
-                </StyledTableCell>
+                <StyledTableCell scope="row">{log.post}</StyledTableCell>
                 <StyledTableCell align="right">
                   {log.captainName}
                 </StyledTableCell>
                 <StyledTableCell align="right">{log.title}</StyledTableCell>
-                <StyledTableCell align="right">
+                <StyledTableCell component="th" align="right">
                   {log.daysSinceLastCrisis}
                 </StyledTableCell>
-                <StyledTableCell align="right">
+                <StyledTableCell component="th" align="right">
                   {log.mistakesWereMadeToday ? "True" : "False"}
                 </StyledTableCell>
-                <StyledTableCell align="right" className="Log">
+                <StyledTableCell component="th" align="right" className="Log">
                   <Link to={"/logs/" + index} className="log-link">
                     Link
                   </Link>
