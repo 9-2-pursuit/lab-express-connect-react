@@ -3,9 +3,10 @@ function Nav() {
 
     return (
         <nav>
-            <Link to="/">nav, Home</Link> ↘︎ 
-            <Link to="/logs">logs, index</Link>↘︎
-            {/* <Link>logs, new</Link> */}
+            <Link to="/">/Logs</Link>{" "}
+            <Link to="/logs">/logs/:index</Link>{" "}
+            <Link to="/logs/new">New Log</Link>{" "}
+        
         </nav>
     )
 
