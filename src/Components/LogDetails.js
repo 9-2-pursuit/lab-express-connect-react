@@ -27,10 +27,14 @@ function LogDetails() {
         <h2>{log.title} - By {log.captainName}  </h2>
         <p>Days since last crisis: {log.daysSinceLastCrisis}</p>
         <p>{log.post}</p>
-        <a href={"/logs"}>Back</a>
-        <Link to={"/logs"}>Back</Link>
-        <Link to={`/logs/${index}/edit`}><button>Edit</button></Link>
+        <nav>
+        <a href="/logs">/logs</a>{" "}
+        <Link to={"/logs"}>/logs</Link>{" "}
+        <Link to={`/logs/${index}/edit`}>Edit</Link>{" "}
+        <a href={`logs/${index}/edit`}>Edit</a>{" "}
+        </nav>
         <button onClick={handleDeletion}>Delete</button>
+        
     </article>
   )
 }
