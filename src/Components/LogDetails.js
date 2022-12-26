@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 function LogDetails() {
-  //get apit key
+  //get api key
   const API = process.env.REACT_APP_API_URL;
   //set a state for data
   const [log, setLogs] = useState([]);
@@ -10,10 +10,10 @@ function LogDetails() {
   let { index } = useParams();
   //use effect to get data on page load
   useEffect(() => {
-    //set path for a log's index
+    //set route for a log's index
     axios.get(`${API}/logs/${index}`).then((response) => {
       setLogs(response.data);
-      console.log(response.data, "data for log index");
+      console.log(response.data, "data for index");
     });
   }, []);
 
