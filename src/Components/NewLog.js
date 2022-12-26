@@ -31,7 +31,8 @@ function NewLog() {
     //when the promise is fulfilled useNavigate will navigate the user to the index showing all logs
     //.then takes a callback function. useNavigate is placed as an argument to navigate the user to the index.
   }
-  return (
+  function handleDeletion(){}
+   return (
     <div className="NewLog">
       <header>Captain's Log</header>
       <form onSubmit={handleNewLog}>
@@ -78,6 +79,7 @@ function NewLog() {
         />
         <input type="submit" />
       </form>
+      <button onClick={handleDeletion}>Delete</button>{" "}
     </div>
   );
 }
