@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Table } from "react-bootstrap";
+
 function Log({ log, index }) {
   return (
     <div className="Log">

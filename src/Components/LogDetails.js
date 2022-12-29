@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import { ButtonGroup } from "react-bootstrap";
 function LogDetails() {
   //get api key
   const API = process.env.REACT_APP_API_URL;
@@ -30,13 +31,15 @@ function LogDetails() {
         <p>Days since last crisis: {log.daysSinceLastCrisis}</p>
         <p>{log.post}</p>
       </article>
+
       <Link to={`/logs`}>
         <Button variant="dark">Back</Button>
       </Link>
       <Link to={`/logs/${index}/edit`}>
-      <Button variant="success">Edit</Button>
+      <Button variant="primary">Edit</Button>
       </Link>
       <Button variant="danger" onClick={handleDeletion}>Delete</Button>{" "}
+ 
     </div>
   );
 }
