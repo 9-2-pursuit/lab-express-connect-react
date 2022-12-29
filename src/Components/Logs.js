@@ -17,11 +17,9 @@ function Logs() {
 
   return (
     <div className="Logs">
-      <td>
-        {logs.map((log, index) => {
-          return <Log key={index} log={log} index={index} />;
-        })}
-      </td>
+      {logs.map((log, index) => {
+        return <Log key={index} log={log} index={index} />;
+      })}
     </div>
   );
 }

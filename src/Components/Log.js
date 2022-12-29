@@ -4,10 +4,14 @@ function Log({ log, index }) {
     <div className="Log">
       <tr>
         <td>
-          <p>
-            {log.captainName} {log.title}
-          </p>
-
+          {log.daysSinceLastCrisis ? (
+            <span>⭐️</span>
+          ) : (
+            <span>&nbsp; &nbsp; &nbsp;</span>
+          )}
+        </td>
+        {log.captainName} - {log.title}
+        <td>
           <Link to={`/logs/${index}`}>✏️</Link>
         </td>
       </tr>

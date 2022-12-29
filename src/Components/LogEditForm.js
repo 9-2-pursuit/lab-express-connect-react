@@ -1,11 +1,14 @@
 import axios from "axios";
+import LogDetails from "./LogDetails";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 function LogEditForm() {
   const API = process.env.REACT_APP_API_URL;
   let { index } = useParams();
-  let  navigate = useNavigate();
-  const [newLog, setLog] = useState({
+  let navigate = useNavigate();
+
+  const [log, setLog] = useState({
     captainName: "",
     title: "",
     post: "",
@@ -13,21 +16,27 @@ function LogEditForm() {
     daysSincelastCrisis: "",
   });
 
-  useEffect(() => {}, []);
+  const [edit, setEdit] = useState(log)
+  
+
+  console.log(log);
+
+  useEffect(() => {}, [index]);
 
   function handleTextChange(e) {
-    setLog({ ...newLog, [e.target.id]: e.target.value });
+    setLog({ ...log, [e.target.id]: e.target.value });
   }
 
   function handleCheckBoxChange() {
-    setLog({ ...newLog, mistakesWereMadeToday: !newLog.mistakesWereMadeToday });
+    setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
   }
 
   function handleNewLog(e) {
     e.preventDefault();
-    axios.post(`${API}/logs`, newLog).then(() => navigate(`/logs/${index}`));
+    axios.post(`${API}/logs`, log).then(() => navigate(`/logs/${index}`));
+    console.log(edit)
   }
-
+  console.log(log);
   return (
     <div className="Edit">
       <header>Edit Captain's Log</header>
@@ -36,41 +45,41 @@ function LogEditForm() {
         <input
           id="captainName"
           type="text"
-          value={newLog.captainName}
+          value={edit.captainName}
           onChange={handleTextChange}
-          placeholder="captain name"
+       
           required
         />
         <label htmlFor="title">Title:</label>
         <input
           id="title"
           type="text"
-          value={newLog.title}
+          value={log.title}
           onChange={handleTextChange}
-          placeholder="title"
+     
           required
         />
         <label htmlFor="post">Post:</label>
         <textarea
           id="post"
           type="text"
-          value={newLog.post}
+          value={log.post}
           onChange={handleTextChange}
-          placeholder="post"
-          required //*
+     
+       
         />
         <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
         <input
           id="mistakesWereMadeToday"
           type="checkbox"
           onChange={handleCheckBoxChange}
-          checked={newLog.mistakesWereMadeToday}
+          checked={log.mistakesWereMadeToday}
         />
         <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis:</label>
         <input
           id="daysSinceLastCrisis"
           type="number"
-          value={newLog.daysSincelastCrisis}
+          value={log.daysSincelastCrisis}
           onChange={handleTextChange}
         />
         <input type="submit" />
