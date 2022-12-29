@@ -53,45 +53,39 @@ function LogEditForm() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formTitle">
-          <Form.Label>Title:</Form.Label>
-          <Form.Control
-            id="title"
-            type="text"
-            value={log.title}
-            onChange={handleTextChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formPost">
-          <Form.Label>Post:</Form.Label>
-          <Form.Control
-            id="post"
-            type="text"
-            value={log.post}
-            onChange={handleTextChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formMistakesWereMadeToday">
-          <Form.Label>Mistakes were made today</Form.Label>
-          <input
-            id="mistakesWereMadeToday"
-            type="checkbox"
-            onChange={handleCheckBoxChange}
-            checked={log.mistakesWereMadeToday}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formDaysSicneLastCrisis">
-          <Form.Label>Days Since Last Crisis:</Form.Label>
-          <Form.Control
-            id="daysSinceLastCrisis"
-            type="number"
-            value={log.daysSincelastCrisis}
-            onChange={handleTextChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <Form.Label htmlFor="title">Title:</Form.Label>
+        <Form.Control
+          id="title"
+          type="text"
+          value={log.title}
+          onChange={handleTextChange}
+          required
+        />
+</Form.Group>
+
+        <Form.Label>Post:</Form.Label>
+        <textarea
+          id="post"
+          className="form-control"
+          type="text"
+          value={log.post}
+          onChange={handleTextChange}
+        />
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
+        <input
+          id="mistakesWereMadeToday"
+          type="checkbox"
+          onChange={handleCheckBoxChange}
+          checked={log.mistakesWereMadeToday}
+        />
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis:</label>
+        <input
+          id="daysSinceLastCrisis"
+          type="number"
+          value={log.daysSincelastCrisis}
+          onChange={handleTextChange}
+        />
+        <input type="submit" className="btn btn-primary" />
       </form>
       <Link to={`/logs/${index}`}>
         <Button variant="dark">Back</Button>
