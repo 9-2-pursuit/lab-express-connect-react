@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
-import { Container } from "react-dom";
+import { Button} from "react-bootstrap";
 function Nav() {
 
     return (
-        <Navbar bg="dark">
+        <Navbar  bg="dark">
             {/* <Link to="/">/logs</Link>{" "} */}
-            <Link to="/logs">/logs/:index</Link>{" "} 
-            <Link to="/logs/new">New Log</Link>{" "}
+            <Link to="/logs"><Button variant="primary">/logs/:index</Button></Link>{" "} 
+            <Link to="/logs/new"><Button variant="success">New Log</Button></Link>{" "}
         
         </Navbar>
     )
