@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EditIcon from "@mui/icons-material/Edit";
 import { motion } from "framer-motion";
+import ConfirmDelete from "../components/ConfirmDelete";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -69,11 +70,18 @@ export default function Log() {
           variant="outlined"
           sx={{ px: 10, py: 1.2 }}
           startIcon={<DeleteIcon />}
-          onClick={handleDelete}
+          onClick={() => setToggleDelete(!toggleDelete)}
         >
           Delete
         </Button>
       </Stack>
+
+      {toggleDelete && (
+        <ConfirmDelete
+          handleDelete={handleDelete}
+          setToggleDelete={setToggleDelete}
+        />
+      )}
     </motion.div>
   );
 }
