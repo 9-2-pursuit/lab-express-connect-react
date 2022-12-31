@@ -4,7 +4,7 @@ export default function confirmDelete({ handleDelete, setToggleDelete }) {
   return (
     <div className="confirm-delete">
       <div className="confirm-wrapper">
-        <p>Confirm Delete</p>
+        <p>Are you sure ? </p>
         <button className="yes" onClick={handleDelete}>
           Yes
         </button>
