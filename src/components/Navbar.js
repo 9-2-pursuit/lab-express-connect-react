@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 export default function ButtonAppBar() {
-  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

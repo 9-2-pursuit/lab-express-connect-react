@@ -12,6 +12,7 @@ const API = process.env.REACT_APP_API_URL;
 
 export default function Log() {
   const [log, setLog] = useState([]);
+  const [toggleDelete, setToggleDelete] = useState(false);
   const { index } = useParams();
   const navigate = useNavigate();
 

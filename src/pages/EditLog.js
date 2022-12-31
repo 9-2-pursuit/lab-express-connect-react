@@ -21,7 +21,7 @@ export default function EditLog() {
       .get(`${API}/logs/${index}`)
       .then((res) => setFormData(res.data))
       .catch(console.error);
-  }, []);
+  }, [index]);
 
   const handleChange = (e) => {
     const newObj = { ...formData };
