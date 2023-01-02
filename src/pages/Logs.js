@@ -19,6 +19,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Grid from "@mui/material/Grid";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,21 +46,38 @@ const API = process.env.REACT_APP_API_URL;
 export default function Logs() {
   const [logs, setLogs] = useState([]);
   const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
   console.log(logs);
 
   const handleChange = (event) => {
     setSortBy(event.target.value);
+    console.log(event.target.id);
+  };
+  const handleChange2 = (event) => {
+    setOrder(event.target.value);
   };
 
   function sortByValue() {
     if (sortBy === "captainName") {
-      return logs.sort((a, b) =>
-        a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 : 1
-      );
+      if (order === "ascending") {
+        return logs.sort((a, b) =>
+          a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 : 1
+        );
+      } else {
+        return logs.sort((a, b) =>
+          a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? 1 : -1
+        );
+      }
     } else if (sortBy === "daysSinceLastCrisis") {
-      return logs.sort((a, b) =>
-        Number(a[sortBy]) < Number(b[sortBy]) ? -1 : 1
-      );
+      if (order === "ascending") {
+        return logs.sort((a, b) =>
+          Number(a[sortBy]) < Number(b[sortBy]) ? -1 : 1
+        );
+      } else {
+        return logs.sort((a, b) =>
+          Number(a[sortBy]) < Number(b[sortBy]) ? 1 : -1
+        );
+      }
     } else {
       return logs;
     }
@@ -80,23 +98,47 @@ export default function Logs() {
       exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
     >
       {/* select input  */}
-      <Box sx={{ maxWidth: 200, ml: "auto", mb: "10px" }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={sortBy}
-            label="SortBy"
-            onChange={handleChange}
-          >
-            <MenuItem value={"captainName"}>Captain's Name</MenuItem>
-            <MenuItem value={"daysSinceLastCrisis"}>
-              Days since last crisis
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+
+      <Grid container spacing={1}>
+        <Grid item xs={6}></Grid>
+
+        <Grid item xs={3}>
+          <Box sx={{ maxWidth: 200, ml: "auto", mb: "10px" }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sortBy}
+                label="SortBy"
+                onChange={handleChange}
+              >
+                <MenuItem value={"captainName"}>Captain's Name</MenuItem>
+                <MenuItem value={"daysSinceLastCrisis"}>
+                  Days since last crisis
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Grid>
+        <Grid item xs={3}>
+          <Box sx={{ maxWidth: 200, ml: "auto", mb: "10px" }}>
+            <FormControl fullWidth>
+              <InputLabel id="order-select-label">Order</InputLabel>
+              <Select
+                labelId="order-select-label"
+                id="order-select"
+                value={order}
+                label="order"
+                onChange={handleChange2}
+              >
+                <MenuItem value={"ascending"}>Ascending</MenuItem>
+                <MenuItem value={"descending"}>Descending</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </Grid>
+      </Grid>
 
       {/* table  */}
       <TableContainer component={Paper}>
