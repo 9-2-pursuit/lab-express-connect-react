@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-// mui
+// mui table
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -49,19 +49,6 @@ export default function Logs() {
 
   const handleChange = (event) => {
     setSortBy(event.target.value);
-    console.log(sortBy);
-    const sort = event.target.value;
-    const logsCopy = [...logs];
-
-    if (sort === "captainName") {
-      setLogs(logsCopy.sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1)));
-    } else if (sort === "daysSinceLastCrisis") {
-      setLogs(
-        logsCopy.sort((a, b) =>
-          Number(a[sortBy]) < Number(b[sortBy]) ? -1 : 1
-        )
-      );
-    }
   };
 
   function sortByValue() {
