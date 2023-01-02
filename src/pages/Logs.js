@@ -13,6 +13,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+// select input
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -37,6 +44,39 @@ const API = process.env.REACT_APP_API_URL;
 
 export default function Logs() {
   const [logs, setLogs] = useState([]);
+  const [sortBy, setSortBy] = useState("");
+  console.log(logs);
+
+  const handleChange = (event) => {
+    setSortBy(event.target.value);
+    console.log(sortBy);
+    const sort = event.target.value;
+    const logsCopy = [...logs];
+
+    if (sort === "captainName") {
+      setLogs(logsCopy.sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1)));
+    } else if (sort === "daysSinceLastCrisis") {
+      setLogs(
+        logsCopy.sort((a, b) =>
+          Number(a[sortBy]) < Number(b[sortBy]) ? -1 : 1
+        )
+      );
+    }
+  };
+
+  function sortByValue() {
+    if (sortBy === "captainName") {
+      return logs.sort((a, b) =>
+        a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 : 1
+      );
+    } else if (sortBy === "daysSinceLastCrisis") {
+      return logs.sort((a, b) =>
+        Number(a[sortBy]) < Number(b[sortBy]) ? -1 : 1
+      );
+    } else {
+      return logs;
+    }
+  }
 
   useEffect(() => {
     axios
@@ -45,8 +85,6 @@ export default function Logs() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(logs);
-
   return (
     <motion.div
       className="Logs"
@@ -54,6 +92,26 @@ export default function Logs() {
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.8 } }}
     >
+      {/* select input  */}
+      <Box sx={{ maxWidth: 200, ml: "auto", mb: "10px" }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={sortBy}
+            label="SortBy"
+            onChange={handleChange}
+          >
+            <MenuItem value={"captainName"}>Captain's Name</MenuItem>
+            <MenuItem value={"daysSinceLastCrisis"}>
+              Days since last crisis
+            </MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      {/* table  */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -71,8 +129,8 @@ export default function Logs() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {logs.map((log, index) => (
-              <StyledTableRow key={log.mistake}>
+            {sortByValue().map((log, index) => (
+              <StyledTableRow key={log.post}>
                 <StyledTableCell scope="row">{log.post}</StyledTableCell>
                 <StyledTableCell align="right">
                   {log.captainName}
