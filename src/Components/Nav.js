@@ -7,7 +7,7 @@ function Nav() {
         <Navbar  bg="dark">
             {/* <Link to="/">/logs</Link>{" "} */}
             <Link to="/logs"><Button variant="primary">/logs/:index</Button></Link>{" "} 
-            <Link to="/logs/new"><Button variant="success">New Log</Button></Link>{" "}
+            <Link to="/logs/new">New Log</Link>{" "}
         
         </Navbar>
     )
