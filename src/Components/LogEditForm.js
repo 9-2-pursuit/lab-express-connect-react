@@ -16,6 +16,7 @@ function LogEditForm() {
   });
 
   const handleTextChange = (event) => {
+    console.log(typeof log.daysSinceLastCrisis);
     setLog({ ...log, [event.target.id]: event.target.value });
   };
 
@@ -44,6 +45,7 @@ function LogEditForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(typeof log.daysSinceLastCrisis);
     updateLog();
   };
 
@@ -56,11 +58,12 @@ function LogEditForm() {
       .catch((e) => console.error(e));
   };
 
-
   return (
     <div className="Edit mb-3 text-center">
-     <form onSubmit={handleSubmit}>
-        <label htmlFor="captainName" className="form-label">Captain's Name:</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="captainName" className="form-label h4">
+          Captain's Name:
+        </label>
         <input
           id="captainName"
           value={log.captainName}
@@ -70,7 +73,9 @@ function LogEditForm() {
           className="form-control text-center"
           required
         />
-        <label htmlFor="title" className="form-label">Title:</label>
+        <label htmlFor="title" className="form-label h4">
+          Title:
+        </label>
         <input
           id="title"
           type="text"
@@ -80,7 +85,9 @@ function LogEditForm() {
           className="form-control text-center"
           onChange={handleTextChange}
         />
-        <label htmlFor="post" className="form-label">Post:</label>
+        <label htmlFor="post" className="form-label h4">
+          Post:
+        </label>
         <textarea
           id="post"
           type="text"
@@ -90,22 +97,25 @@ function LogEditForm() {
           className="form-control text-center"
           onChange={handleTextChange}
         />
-        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis:</label>
+        <label htmlFor="daysSinceLastCrisis" className="form-label h4">
+          Days Since Last Crisis:
+        </label>
         <input
           id="daysSinceLastCrisis"
           name="daysSinceLastCrisis"
-          value={log.daysSinceLastCrisis}
+          value={Number(log.daysSinceLastCrisis)}
           onChange={handleTextChange}
           placeholder="When was the last crisis?"
           className="form-control text-center"
           type="number"
+          min="0"
         />
         <div className="form-check form-switch row checkbox-row">
           <div className="col-xs-2 col-xs-offset-4">
-            <div className="checkbox-inline" style={{ "textAlign": "center" }}>
+            <div className="checkbox-inline" style={{ textAlign: "center" }}>
               <label
                 htmlFor="mistakesWereMadeToday"
-                className=" checkbox-inline"
+                className=" checkbox-inline h4"
               >
                 Mistakes were made today:{" "}
                 <input
@@ -121,13 +131,22 @@ function LogEditForm() {
           </div>
         </div>
         <br />
-        <button type="button" class="btn  btn-outline-danger" onClick={handleDelete}>Delete</button>
-        {" "}
-        <button type="button submit" class="btn  btn-outline-success" >Submit</button>
+        <button
+          type="button"
+          className="btn  btn-outline-danger"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>{" "}
+        <button type="button submit" className="btn  btn-outline-success">
+          Submit
+        </button>
       </form>
-      <br/>
+      <br />
       <Link to={`/logs/${index}`}>
-        <button type="button" class="btn  btn-outline-warning" >Back</button>
+        <button type="button" className="btn  btn-outline-warning">
+          Back
+        </button>
       </Link>
     </div>
   );

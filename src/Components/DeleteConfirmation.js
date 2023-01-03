@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Button, Modal } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL;
 
-export default function ConfirmDelete({ index, navigate }) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+export default function ConfirmDelete({
+  index,
+  navigate,
+  show,
+  handleClose,
+  handleShow,
+}) {
   const handleDelete = () => {
     axios
       .delete(`${API}/logs/${index}`)
@@ -22,7 +22,12 @@ export default function ConfirmDelete({ index, navigate }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        variant="white"
+        onClick={handleShow}
+        type=" button"
+        className="btn btn-outline-danger"
+      >
         Delete
       </Button>
 

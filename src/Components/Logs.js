@@ -1,4 +1,4 @@
-import Log from "./Log"
+import Log from "./Log";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
@@ -14,7 +14,7 @@ function Logs() {
       .then((response) => setLogs(response.data))
       .catch((e) => console.error("catch", e));
   }, []);
-;
+
   return (
     <div className="logs text-center">
       <section>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -16,6 +16,7 @@ function LogNewForm() {
   const navigate = useNavigate();
 
   const handleTextChange = (event) => {
+    console.log(typeof log.daysSinceLastCrisis);
     setLog({ ...log, [event.target.id]: event.target.value });
   };
 
@@ -25,6 +26,7 @@ function LogNewForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(typeof log.daysSinceLastCrisis);
     axios
       .post(`${API}/logs`, log)
       .then(() => {
@@ -41,7 +43,7 @@ function LogNewForm() {
   return (
     <div className="New mb-3 text-center">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="captainName" className="form-label">
+        <label htmlFor="captainName" className="form-label h4">
           Captain's Name:
         </label>
         <input
@@ -53,7 +55,7 @@ function LogNewForm() {
           className="form-control text-center"
           required
         />
-        <label htmlFor="title" className="form-label">
+        <label htmlFor="title" className="form-label h4">
           Title:
         </label>
         <input
@@ -65,7 +67,7 @@ function LogNewForm() {
           className="form-control text-center"
           onChange={handleTextChange}
         />
-        <label htmlFor="post" className="form-label">
+        <label htmlFor="post" className="form-label h4">
           Post:
         </label>
         <textarea
@@ -77,7 +79,7 @@ function LogNewForm() {
           className="form-control text-center"
           onChange={handleTextChange}
         />
-        <label htmlFor="daysSinceLastCrisis" className="form-label">
+        <label htmlFor="daysSinceLastCrisis" className="form-label h4">
           Days Since Last Crisis:
         </label>
         <input
@@ -88,6 +90,7 @@ function LogNewForm() {
           placeholder="When was the last crisis?"
           className="form-control text-center"
           type="number"
+          min="0"
         />
 
         <div className="form-check form-switch row checkbox-row">
@@ -95,7 +98,7 @@ function LogNewForm() {
             <div className="checkbox-inline" style={{ textAlign: "center" }}>
               <label
                 htmlFor="mistakesWereMadeToday"
-                className=" checkbox-inline"
+                className=" checkbox-inline h4"
               >
                 Mistakes were made today:{" "}
                 <input
@@ -118,7 +121,7 @@ function LogNewForm() {
       <br />
       <button
         type="button"
-        class="btn  btn-outline-warning"
+        className="btn  btn-outline-warning"
         onClick={previousPage}
       >
         Back
