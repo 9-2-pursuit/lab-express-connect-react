@@ -11,7 +11,7 @@ function Logs() {
   useEffect(() => {
     axios
       .get(`${API}/logs`)
-      .then((response) => console.log(response.data))
+      .then((response) => setLogs(response.data))
       .catch((e) => console.error("catch", e));
   }, []);
 
@@ -21,13 +21,14 @@ function Logs() {
         <table>
           <thead>
             <tr>
-              <th></th>
-              <th>Take me there</th>
-              <th>See this bookmark</th>
+              <th>Mistakes</th>
+              <th>Captain Name</th>
+              <th>See this log</th>
             </tr>
           </thead>
           <tbody>
             {logs.map((log, index) => {
+              console.log(log)
               return <Log key={index} log={log} index={index} />;
             })}
           </tbody>

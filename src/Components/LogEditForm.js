@@ -9,20 +9,12 @@ function LogEditForm() {
   let { index } = useParams();
 
   const [log, setLog] = useState({
-    name: "",
-    url: "",
-    category: "",
-    description: "",
-    isFavorite: false,
+    captainName: "",
+    title: "",
+    post: "",
+    mistakesWereMadeToday: false,
+    daysSinceLastCrisis: "",
   });
-
-  const handleTextChange = (event) => {
-    setLog({ ...log, [event.target.id]: event.target.value });
-  };
-
-  const handleCheckboxChange = () => {
-    setLog({ ...log, isFavorite: !log.isFavorite });
-  };
 
   useEffect(() => {
     axios
@@ -43,6 +35,23 @@ function LogEditForm() {
       .catch((c) => console.warn("catch", c));
   };
 
+  const handleTextChange = (event) => {
+    setLog({ ...log, [event.target.id]: event.target.value });
+  };
+
+  const handleCheckboxChange = () => {
+    setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
+  };
+
+  // const handleDelete = () => {
+  //   axios
+  //     .delete(`${API}/logs/${index}`)
+  //     .then(() => {
+  //       navigate(`/logs`);
+  //     })
+  //     .catch((e) => console.error(e));
+  // };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     updateLog();
@@ -50,56 +59,53 @@ function LogEditForm() {
   return (
     <div className="Edit">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="captainName">Captain's Name:</label>
         <input
-          id="name"
-          value={log.name}
+          id="captainName"
+          value={log.captainName}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of Website"
+          placeholder="Name of Captain"
           required
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="title">Title</label>
         <input
-          id="url"
+          id="title"
           type="text"
-          pattern="http[s]*://.+"
+          value={log.title}
+          onChange={handleTextChange}
+        />
+        <label htmlFor="post">Post</label>
+        <textarea
+          id="post"
+          type="text"
+          value={log.post}
+          onChange={handleTextChange}
           required
-          value={log.url}
-          placeholder="http://"
-          onChange={handleTextChange}
         />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
         <input
-          id="category"
-          type="text"
-          name="category"
-          value={log.category}
-          placeholder="educational, inspirational, ..."
+          id="daysSinceLastCrisis"
+          value={log.daysSinceLastCrisis}
+          type="number"
           onChange={handleTextChange}
+          placeholder="ex: 0"
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
         <input
-          id="isFavorite"
+          id="mistakesWereMadeToday"
           type="checkbox"
           onChange={handleCheckboxChange}
-          checked={log.isFavorite}
-        />
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={log.description}
-          onChange={handleTextChange}
-          placeholder="Describe why you loged this site"
-        />
+          checked={log.mistakesWereMadeToday}
+        ></input>
         <br />
-
         <input type="submit" />
       </form>
-      <Link to={`/logs/${index}`}>
-        <button>Nevermind!</button>
+      <Link to={`/logs`}>
+        <button>Back</button>
       </Link>
+      {/* <button 
+          onClick={handleDelete}>Delete </button> */}
     </div>
   );
 }

@@ -74,3 +74,8 @@ input[type="submit"] {
   justify-content: space-around;
   width: 50%;
 }
+
+#delete{
+  width: 2px;
+  height: 2px;
+}

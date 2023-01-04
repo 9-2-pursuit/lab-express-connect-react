@@ -29,15 +29,11 @@ function LogDetails() {
   };
   return (
     <article>
-      <h1>{log.title} - By {log.captainName}</h1>
-<span>{log.post}</span>
-      <h5> 
-         <span>
-          <a href={log.url}>{log.name}</a>
-        </span>{" "}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {log.url}
-      </h5>
+      <h1>
+        {log.title} - By {log.captainName}
+      </h1>
+      <span>{log.post}</span>
+      <span> "Days since last crisis: {log.daysSinceLastCrisis}"</span>
       <h6>{log.category}</h6>
       <p>{log.description}</p>
       <div className="showNavigation">
@@ -55,7 +51,8 @@ function LogDetails() {
         </div>
         <div>
           {" "}
-          <button onClick={handleDelete}>Delete</button>
+          <button id="delete"
+          onClick={handleDelete}>Delete </button>
         </div>
       </div>
     </article>
