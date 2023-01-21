@@ -1,11 +1,11 @@
-import NavBar from "./Components/NavBar";
+import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import LogsIndex from "./Components/LogsIndex";
-import LogDetails from "./Components/LogDetails";
-import NewLogForm from "./Components/NewLogForm";
-import EditLogForm from "./Components/EditLogForm";
-import NotFound from "./Pages/NotFound";
+import Home from "./pages/Home";
+import LogsIndex from "./components/LogsIndex";
+import LogDetails from "./components/LogDetails";
+import NewLogForm from "./components/NewLogForm";
+import EditLogForm from "./components/EditLogForm";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

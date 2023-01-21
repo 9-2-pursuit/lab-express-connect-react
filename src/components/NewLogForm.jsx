@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 const API = process.env.REACT_APP_API_URL;
 
-export default function EditLogForm() {
+export default function NewLogForm() {
     const [log, setLog] = useState({
         captainName: "",
         title: "",
@@ -11,18 +11,6 @@ export default function EditLogForm() {
         mistakesWereMadeToday: false,
         daysSinceLastCrisis: ""
     })
-
-    const { index } = useParams();
-
-    useEffect(() => {
-        axios.get(`${API}/logs/${index}`)
-        .then(response => {
-            setLog(response.data)
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    }, [index])
 
     const navigate = useNavigate();
 
@@ -34,24 +22,19 @@ export default function EditLogForm() {
         setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday })
     }
 
-    function updateLog() {
-        axios.put(`${API}/logs/${index}`, log)
-        .then(response => {
-            console.log(response.data)
-            setLog(response.data)
-            navigate(`/logs/${index}`)
-        })
-        .catch(e => console.log(e))
-    }
-
     function handleSubmit(e) {
         e.preventDefault()
-        updateLog()
+        addLog(log)
     }
 
+    function addLog(newLog) {
+        axios.post(`${API}/logs`, log).then(response => {
+            navigate(`/logs`)
+        }).catch(e => console.log(e))
+    }
   return (
     <div> 
-        <h1>Edit Log</h1>
+        <h1>New Log</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='captainName'>Captain's Name</label>
             <input 
@@ -98,7 +81,6 @@ export default function EditLogForm() {
         />
         <br />
         <Link to="/logs"><button>Back</button></Link>
-        
         <input type="submit" />
         
       </form>
