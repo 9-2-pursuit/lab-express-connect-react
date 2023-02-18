@@ -6,7 +6,7 @@ import New from "./Pages/New.js";
 import Show from "./Pages/Show.js";
 
 //COMPONENTS
-import NavBar from "./Components/NavBar.js";
+import NavBar from "./Components/NavBar";
 
 function App() {
   return (
