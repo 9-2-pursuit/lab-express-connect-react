@@ -7,6 +7,7 @@ import Show from "./Pages/Show.js";
 
 //COMPONENTS
 import NavBar from "./Components/NavBar";
+import Logs from "./Components/Logs";
 
 function App() {
   return (

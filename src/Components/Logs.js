@@ -9,9 +9,8 @@ export default function Logs() {
 
   useEffect(() => {
     axios
-      .get(`${API}/logs`)
+      .get(`${API}logs`)
       .then((res) => {
-        console.log(res.data);
         setLogs(res.data);
       })
       .catch((err) => console.log(err));
@@ -19,22 +18,20 @@ export default function Logs() {
 
   return (
     <div className="logs">
-        <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mistakes</th>
-                        <th>Captain's Name</th>
-                        <th>Open Log</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {logs.map((log, index) => {
-                        return <Log key={index} log={log} index={index} />;
-                    })}
-                </tbody>
-            </table>
-        </section>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Mistakes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {logs.map((log, index) => {
+              return <Log key={index} log={log} index={index} />;
+            })}
+          </tbody>
+        </table>
+      </section>
     </div>
-  )
+  );
 }

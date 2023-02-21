@@ -12,21 +12,23 @@ export default function LogDetails() {
 
   useEffect(() => {
     axios
-      .get(`${API}/logs/${index}`)
+      .get(`${API}logs/${index}`)
       .then((response) => {
         setLog(response.data);
       })
       .catch((err) => {
-        navigate("/not-found");
+        navigate("/logs");
       });
-  }, [index, navigate]);
+  }, [index]);
 
-  function handleDelete() {
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log(`${API}logs/${index}`);
     axios
-      .delete(`${API}/logs/${index}`)
+      .delete(`${API}logs/${index}`)
       .then(() => navigate("/logs"))
       .catch(console.error);
-  }
+  };
 
   return (
     <article>
@@ -39,6 +41,9 @@ export default function LogDetails() {
       <p>Post: {log.post}</p>
       <div className="show-navigation">
         <div className="btn">
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+        <div className="btn">
           <Link to={"/logs"}>
             <button>Back</button>
           </Link>
@@ -47,9 +52,6 @@ export default function LogDetails() {
           <Link to={`/logs/${index}/edit`}>
             <button>Edit</button>
           </Link>
-        </div>
-        <div>
-          <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </article>

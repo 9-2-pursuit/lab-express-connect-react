@@ -15,8 +15,8 @@ export default function EditLog() {
     mistakesWereMadeToday: false,
     daysSinceLastCrisis: 0,
   });
-  const handleTextChange = (event) => {
-    setLog({ ...log, [event.target.id]: event.target.value });
+  const handleTextChange = (e) => {
+    setLog({ ...log, [e.target.id]: e.target.value });
   };
   const handleCheckboxChange = () => {
     setLog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
@@ -24,26 +24,27 @@ export default function EditLog() {
 
   useEffect(() => {
     axios
-      .get(`${API}/logs/${index}`)
+      .get(`${API}logs/${index}`)
       .then((res) => setLog(res.data))
       .catch((err) => console.error(err));
   }, [index]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(API);
     axios
-      .put(`${API}/logs/${index}`, log)
+      .put(`${API}logs/${index}`, log)
       .then(() => navigate(`/logs/${index}`))
       .catch(console.error);
   };
 
   return (
-    <div>
+    <div className="edit">
       <form onSubmit={handleSubmit}>
         <label htmlFor="captainName">Captain's Name:</label>
         <input
           id="captainName"
-          value={log.name}
+          value={log.captainName}
           type="text"
           onChange={handleTextChange}
           required
