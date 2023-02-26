@@ -16,15 +16,13 @@ export default function LogsTitles() {
       <h1>Log Titles:</h1>
       {logs.map((log, index) => (
         <div key={log.title}>
-          <Link className="Log" to={`/logs/${index}`}>
-            {log.title}
-          </Link>
+          <td>
+            <Link className="Log" to={`/logs/${index}`}>
+              {`${log.title} - ${log.captainName}`}
+            </Link>
+          </td>
         </div>
       ))}
-      <br />
-      <Link to={`/logs/new`}>
-        <button>Add new log</button>
-      </Link>
     </div>
   );
 }

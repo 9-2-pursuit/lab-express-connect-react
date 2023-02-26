@@ -67,7 +67,7 @@ export default function ShowOneLog() {
           Delete
         </button>
         <Link to={`/logs/${index}/edit`}>
-          <button>Edit</button>
+          Edit
         </Link>
       </aside>
     </section>

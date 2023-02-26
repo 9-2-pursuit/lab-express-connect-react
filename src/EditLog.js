@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { getOneLog, editLog } from "./fetch";
 import { useEffect, useState } from "react";
 
@@ -45,6 +45,7 @@ export default function EditLog() {
   return (
     <div>
       <div>
+        <Link to='/logs'>Back</Link>
         <h2>Edit</h2>
       </div>
 

@@ -37,9 +37,9 @@ describe("Show Page", () => {
   });
 
   it("has a 'Back' link that takes us back to '/logs'", () => {
-    cy.get("a").invoke("attr", "href").should("eq", "/logs");
+    cy.get("a").contains('Back').invoke("attr", "href").should("eq", "/logs");
   });
   it("has an 'Edit' link that takes us to '/logs/0/edit'", () => {
-    cy.get("a").eq(3).invoke("attr", "href").should("eq", "/logs/0/edit");
+    cy.get("a").contains('Edit').invoke("attr", "href").should("eq", "/logs/0/edit");
   });
 });

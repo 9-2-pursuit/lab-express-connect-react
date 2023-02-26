@@ -27,6 +27,7 @@ describe("Delete functionality", () => {
       cy.get("form").submit();
     });
     it("can go to the show page of the created log", () => {
+      cy.wait(3000)
       cy.get("a").last().click();
     });
     it("can delete the created log", () => {
