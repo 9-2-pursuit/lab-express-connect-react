@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
@@ -7,14 +7,24 @@ const API = process.env.REACT_APP_API_URL;
 function NewForm() {
   let {index} = useParams();
   // console.log(index)
-const [checked, setChecked] = useState(false)
+// const [checked, setChecked] = useState(false)
   //logs is the previous data populated into the form
+
+// useEffect(()=>{
+
+    
+// })
+
+
+// const [log, setlog] = useState([])
+
+
   const [log, setlog] = useState(
      {
         captainName: "",
         title: "",
         post: "",
-        mistakesWereMadeToday: checked,
+        mistakesWereMadeToday: false,
         daysSinceLastCrisis: 0
 });
 
@@ -22,14 +32,16 @@ const [checked, setChecked] = useState(false)
 
   //uses setEdit value of edit to 
 
-  useEffect(() => {
-  axios.get(`${API}/logs/${index}`)
-    .then((response) => {
-      setlog(response.data);
-    })
-    .catch((e) => console.error(e));
+//   useEffect(() => {
+//   axios.get(`${API}/logs/${index}`)
+//     .then((response) => {
+//         console.log(response.data)
+//         // setChecked(response.data.mistakesWereMadeToday)
+//       setlog(response.data);
+//     })
+//     .catch((e) => console.error(e));
 
-  }, [index]);
+//   }, [index]);
 
   // const [edit, newEdit]= useState([])
 
@@ -42,24 +54,32 @@ const [checked, setChecked] = useState(false)
   };
 
   const handleChange = () => { 
-    
-    setChecked(!checked) 
+    // console.log(checked)
+    setlog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
+    // setChecked(!checked) 
     
   }; 
 
-  const updatelog = () => {
-    axios
-      .put(`${API}/logs/${index}`, log)
-      .then((response) => {
-        // setlog(response.data); NO NEED TO DO ANYTHING WITH THE DATE IN AN EDIT FORM, JUST HAVE TO NAVIGATE BACK TO TO WHAT YOU WERE EDITING
-        navigate(`/logs/${index}`);
-      })
-      .catch((e) => console.error("catch", e));
-  };
+//   const updatelog = () => {
+//     axios
+//       .post(`${API}/logs/${index}`, log)
+//       .then((response) => {
+//         // setlog(response.data); NO NEED TO DO ANYTHING WITH THE DATE IN AN EDIT FORM, JUST HAVE TO NAVIGATE BACK TO TO WHAT YOU WERE EDITING
+//         navigate(`/logs/${index}`);
+//       })
+//       .catch((e) => console.error("catch", e));
+//   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updatelog();
+    axios
+      .post(`${API}/logs`, log)
+      .then(() => {
+        navigate("/logs");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -99,18 +119,17 @@ const [checked, setChecked] = useState(false)
           type="checkbox"
           name="mistakesWereMadeToday"
           onChange={handleChange} //should handle separate checkbox...
-        //   value={log.checked}
+          checked={log.mistakesWereMadeToday}
         />
         <label htmlFor="daysSinceLastCrisis">daysSinceLastCrisis:</label>
         <input
           id="daysSinceLastCrisis"
           name="daysSinceLastCrisis"
           type="number"
-        //   value={log.daysSinceLastCrisis}
+          value={log.daysSinceLastCrisis}
           onChange={handleTextChange}
         />
         <br />
-
         <input type="submit" />
       </form>
       <Link to={`/logs/${(index)}`}>
