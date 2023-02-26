@@ -37,7 +37,7 @@ function CaptainDetails() {
       <fieldset>
         <legend> log #{index}</legend>
         <h3>
-          <strong>Name:</strong> {log.name}
+          <strong>Name:</strong> {log.captainName}
         </h3>
         <h3>
           <strong>post:</strong> {log.post}
