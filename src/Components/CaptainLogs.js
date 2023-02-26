@@ -27,7 +27,10 @@ function CaptainLogs() {
               <CaptainLog
                 key={uuidv4()}
                 index={index}
-                individuallogs={individuallogs}
+                name={individuallogs.captainName}
+                title={individuallogs.title}
+                daysSinceLastCrisis={individuallogs.daysSinceLastCrisis}
+
               />
             );
           })}
