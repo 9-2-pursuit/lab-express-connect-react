@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react"; //usememo
-// import log from "./log";
+import CaptainLog from "./CaptainLog";
 // import "react-native-get-random-values";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 function CaptainLogs() {
   const [logs, setlogs] = useState([]);
@@ -18,35 +18,14 @@ function CaptainLogs() {
 
   return (
     <section>
-{/* <strong>Total Balance</strong>: */}
-        {
-        //   <span
-        //     style={
-        //       accumulatorArray[accumulatorArray.length - 1] <= 0
-        //         ? {
-        //             color:"red"
-        //           }
-        //         : (accumulatorArray[accumulatorArray.length - 1] >= 1000
-        //         ? {color:"green"}
-        //         : {color:"black"})
-        //     }
-        //   >
-        //     {logs.reduce((accumulator, currentValue) => {
-        //       accumulator = Number(accumulator) + Number(currentValue.amount);
-        //       accumulatorArray.push(accumulator);
-        //       return accumulator;
-        //     }, 0)}
-        //   </span>
-        }
-
       <table id="customers">
         <tbody>
           {logs.map((individuallogs, index) => {
             // const keyValueforlog = (Number({individuallogs.date*index}))
 
             return (
-              <log
-                // key={uuidv4()}
+              <CaptainLog
+                key={uuidv4()}
                 index={index}
                 individuallogs={individuallogs}
               />
