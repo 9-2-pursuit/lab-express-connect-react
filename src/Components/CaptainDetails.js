@@ -40,10 +40,14 @@ function CaptainDetails() {
           <strong>Name:</strong> {log.captainName}
         </h3>
         <h3>
+          <strong>Title:</strong> {log.title}
+        </h3>
+
+        <h3>
           <strong>post:</strong> {log.post}
         </h3>
         <h3>
-          <strong>mistakesWereMadeToday:</strong> {log.mistakesWereMadeToday}
+          <strong>mistakesWereMadeToday:</strong> {log.mistakesWereMadeToday ? <span>true</span> : <span>false</span>}
         </h3>
         <h3>
           <strong>daysSinceLastCrisis:</strong> {log.daysSinceLastCrisis}

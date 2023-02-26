@@ -7,14 +7,23 @@ const API = process.env.REACT_APP_API_URL;
 function EditForm() {
   let {index} = useParams();
   // console.log(index)
-const [checked, setChecked] = useState(false)
+// const [checked, setChecked] = useState(false)
   //logs is the previous data populated into the form
+
+// useEffect(()=>{
+
+    
+// })
+
+
+
+
   const [log, setlog] = useState(
      {
         captainName: "",
         title: "",
         post: "",
-        mistakesWereMadeToday: checked,
+        mistakesWereMadeToday: false,
         daysSinceLastCrisis: 0
 });
 
@@ -25,6 +34,8 @@ const [checked, setChecked] = useState(false)
   useEffect(() => {
   axios.get(`${API}/logs/${index}`)
     .then((response) => {
+        console.log(response.data)
+        // setChecked(response.data.mistakesWereMadeToday)
       setlog(response.data);
     })
     .catch((e) => console.error(e));
@@ -42,8 +53,9 @@ const [checked, setChecked] = useState(false)
   };
 
   const handleChange = () => { 
-    
-    setChecked(!checked) 
+    // console.log(checked)
+    setlog({ ...log, mistakesWereMadeToday: !log.mistakesWereMadeToday });
+    // setChecked(!checked) 
     
   }; 
 
@@ -99,7 +111,7 @@ const [checked, setChecked] = useState(false)
           type="checkbox"
           name="mistakesWereMadeToday"
           onChange={handleChange} //should handle separate checkbox...
-          value={log.checked}
+          checked={log.mistakesWereMadeToday}
         />
         <label htmlFor="daysSinceLastCrisis">daysSinceLastCrisis:</label>
         <input
@@ -110,7 +122,6 @@ const [checked, setChecked] = useState(false)
           onChange={handleTextChange}
         />
         <br />
-
         <input type="submit" />
       </form>
       <Link to={`/logs/${(index)}`}>
