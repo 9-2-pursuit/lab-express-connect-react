@@ -85,35 +85,35 @@ function NewForm() {
   return (
     <div className="edit">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="captainName">Name:</label>
+        <label htmlFor="captainName">Captain's Name</label>
         <input
           id="captainName"
         //   value={log.captainName}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of log"
+          placeholder="Captain's Name"
           required
         />
-        <label htmlFor="title">title:</label>
+        <label htmlFor="title">Title</label>
         <input
           id="title"
-          type="title"
+          type="text"
           // pattern="http[s]*://.+"
           required
         //   value={log.title}
-          // placeholder="http://"
+          placeholder="Title"
           onChange={handleTextChange}
         />
-        <label htmlFor="post">post:</label>
-        <input
+        <label htmlFor="post">Post</label>
+        <textarea
           id="post"
-          type="text"
+          // type="textarea"
           name="post"
         //   value={log.post}
-          placeholder="income,expense...or anything else!"
+          placeholder="Post"
           onChange={handleTextChange}
         />
-        <label htmlFor="mistakesWereMadeToday">mistakesWereMadeToday:</label>
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
         <input
           id="mistakesWereMadeToday"
           type="checkbox"
@@ -121,7 +121,7 @@ function NewForm() {
           onChange={handleChange} //should handle separate checkbox...
           checked={log.mistakesWereMadeToday}
         />
-        <label htmlFor="daysSinceLastCrisis">daysSinceLastCrisis:</label>
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
         <input
           id="daysSinceLastCrisis"
           name="daysSinceLastCrisis"
