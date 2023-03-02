@@ -76,8 +76,9 @@ function EditForm() {
 
   return (
     <div className="edit">
+      <h2>Edit Page</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="captainName">Name:</label>
+        <label htmlFor="captainName">Captain's Name</label>
         <input
           id="captainName"
           value={log.captainName}
@@ -86,26 +87,26 @@ function EditForm() {
           placeholder="Name of log"
           required
         />
-        <label htmlFor="title">title:</label>
+        <label htmlFor="title">Title</label>
         <input
           id="title"
-          type="title"
+          type="text"
           // pattern="http[s]*://.+"
           required
           value={log.title}
           // placeholder="http://"
           onChange={handleTextChange}
         />
-        <label htmlFor="post">post:</label>
-        <input
+        <label htmlFor="post">Post</label>
+        <textarea
           id="post"
-          type="text"
+          // type="text"
           name="post"
           value={log.post}
-          placeholder="income,expense...or anything else!"
+          placeholder="Post"
           onChange={handleTextChange}
         />
-        <label htmlFor="mistakesWereMadeToday">mistakesWereMadeToday:</label>
+        <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
         <input
           id="mistakesWereMadeToday"
           type="checkbox"
@@ -113,7 +114,7 @@ function EditForm() {
           onChange={handleChange} //should handle separate checkbox...
           checked={log.mistakesWereMadeToday}
         />
-        <label htmlFor="daysSinceLastCrisis">daysSinceLastCrisis:</label>
+        <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
         <input
           id="daysSinceLastCrisis"
           name="daysSinceLastCrisis"
@@ -125,7 +126,7 @@ function EditForm() {
         <input type="submit" />
       </form>
       <Link to={`/logs/${(index)}`}>
-        <button>Nevermind!</button>
+        <button>Back</button>
       </Link>
     </div>
   );
