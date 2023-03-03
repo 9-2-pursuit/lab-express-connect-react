@@ -31,6 +31,8 @@ function CaptainDetails() {
         navigate(`/logs`);
       })
       .catch((e) => console.error(e));
+
+      // navigate("/logs")
   };
   return (
     <article>
