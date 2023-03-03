@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 function CaptainDetails() {
   const API = process.env.REACT_APP_API_URL;
@@ -21,7 +21,7 @@ function CaptainDetails() {
         // navigate("/not-found");
         console.log(err);
       });
-  }, [API,index]);
+  }, [API, index]);
 
   // const handleDelete = () => {};
   const handleDelete = () => {
@@ -37,39 +37,36 @@ function CaptainDetails() {
       <fieldset>
         <legend> log #{index}</legend>
         <h3>
-          <strong>Name:</strong> {log.captainName}
-        </h3>
-        <h3>
-          <strong>Title:</strong> {log.title}
+          <strong></strong>
+          {log.title} - By {log.captainName}
         </h3>
 
         <h3>
           <strong>post:</strong> {log.post}
         </h3>
         <h3>
-          <strong>mistakesWereMadeToday:</strong> {log.mistakesWereMadeToday ? <span>true</span> : <span>false</span>}
+          <strong>mistakesWereMadeToday:</strong>{" "}
+          {log.mistakesWereMadeToday ? <span>true</span> : <span>false</span>}
         </h3>
         <h3>
-          <strong>daysSinceLastCrisis:</strong> {log.daysSinceLastCrisis}
+          <strong>daysSinceLastCrisis:</strong> Days since last crisis:{" "}
+          {log.daysSinceLastCrisis}
         </h3>
-      
       </fieldset>
 
-      <div className="showNavigation">
-        <span>
-          <Link to={`/logs`}>
-            <button>Back</button>
-          </Link>
-        </span>
-        <span>
-          <Link to={`/logs/${index}/edit`}>
-            <button>Edit</button>
-          </Link>
-        </span>
-        <span>
-          <button onClick={handleDelete}>Delete</button>
-        </span>
+      {/* <div> <a href='/logs'>Back</a></div> */}
+      <div>
+        <a href="/logs">
+          <button type="submit">Back</button>
+        </a>
       </div>
+      <div>
+        {" "}
+        <a href={`/logs/${index}/edit`}>
+          <button type="submit">Edit</button>
+        </a>
+      </div>
+      <button onClick={handleDelete}>Delete</button>
     </article>
   );
 }
