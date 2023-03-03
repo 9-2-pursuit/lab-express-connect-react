@@ -42,7 +42,7 @@ function Nav() {
           exact="true"
           activestyle={{ color: "white" }}
         >
-          New Form
+          New Log
         </NavLink></li>
         {/* <span className="totalSUM"><TotalSum /></span> */}
         {/* <span>{TotalSum}</span> */}

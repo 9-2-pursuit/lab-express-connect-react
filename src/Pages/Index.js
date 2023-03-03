@@ -4,7 +4,7 @@ function Index() {
   return (
     <div className="Index">
       <h2>Index</h2>
-      <CaptainLogs />
+     <div className="Log"><CaptainLogs /></div> 
     </div>
   );
 }

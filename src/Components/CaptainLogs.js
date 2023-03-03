@@ -19,7 +19,7 @@ function CaptainLogs() {
   return (
     <section>
       <table id="customers">
-        <tbody>
+        <tbody className="Log">
           {logs.map((individuallogs, index) => {
             // const keyValueforlog = (Number({individuallogs.date*index}))
 
