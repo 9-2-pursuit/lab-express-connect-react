@@ -1,7 +1,9 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
+
 
 
 const API=process.env.REACT_APP_API_URL
@@ -21,7 +23,7 @@ setLog({...log,[e.target.id]:e.target.value})
 
 function handleSubmit(e){
     e.preventDefault()
-    axios.put(`${API}/logs/${index}`,log).then(()=>navigate("/logs"))
+    axios.put(`${API}/logs/${index}`,log).then(()=>navigate(`/logs/${index}`))
     
 }
 
@@ -32,18 +34,18 @@ return (
 
             <form className="column-2 new-form" onSubmit={(e)=>handleSubmit(e)}>
 
-                <div className="grid">
-                <label htmlFor="captainName">Captain-Name</label>
+                
+                <label htmlFor="captainName">Captain's Name</label>
                 <input type='text' id="captainName" className="" value={log.captainName}  required  onChange={(e)=>handleChange(e)}/>
 
                 <label htmlFor="title">Title</label>
                 <input type='text' id="title" className="" value={log.title}  required onChange={(e)=>handleChange(e)}/>
 
                 <label htmlFor="post">Post</label>
-                <input type='text' id="post" className="" value={log.post} required  onChange={(e)=>handleChange(e)}/>
+                <textarea id="post" className="" value={log.post} required  onChange={(e)=>handleChange(e)}></textarea>
 
-                <label htmlFor="mistakes">Mistakes Were Made Today</label>
-                <input type='checkbox' id="mistakes" className="" value={log.mistakesWereMadeToday}   onChange={(e)=>handleChange(e)}/>
+                <label htmlFor="mistakesWereMadeToday">Mistakes Were Made Today</label>
+                <input type='checkbox' id="mistakesWereMadeToday" className="" value={log.mistakesWereMadeToday}   onChange={(e)=>handleChange(e)}/>
 
 
                 <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
@@ -52,7 +54,9 @@ return (
               
 
                 <button type="submit" className="sub def-btn">Submit</button>
-                </div>
+               
+
+                <Link to={`/logs`}>Back</Link>
 
             </form>
     </div>

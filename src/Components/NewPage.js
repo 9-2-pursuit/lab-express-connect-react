@@ -28,18 +28,18 @@ return (
 
             <form className="grid column-2" onSubmit={(e)=>handleSubmit(e)}>
 
-                <div className="grid">
-                <label htmlFor="captainName">Captain-Name</label>
+                
+                <label htmlFor="captainName">Captain's Name</label>
                 <input type='text' id="captainName" className="" value={log.captainName}  required  onChange={(e)=>handleChange(e)}/>
 
                 <label htmlFor="title">Title</label>
                 <input type='text' id="title" className="" value={log.title}  required onChange={(e)=>handleChange(e)}/>
 
                 <label htmlFor="post">Post</label>
-                <input type='text' id="post" className="" value={log.post} required  onChange={(e)=>handleChange(e)}/>
+                <textarea id="post" className="" value={log.post}   onChange={(e)=>handleChange(e)}></textarea>
 
-                <label htmlFor="mistakes">Mistakes Were Made Today</label>
-                <input type='checkbox' id="mistakes" className="" value={log.mistakesWereMadeToday} required  onChange={(e)=>handleChange(e)}/>
+                <label htmlFor="mistakesWereMadeToday">Mistakes were made today</label>
+                <input type='checkbox' id="mistakesWereMadeToday" className="" value={log.mistakesWereMadeToday} required  onChange={(e)=>handleChange(e)}/>
 
 
                 <label htmlFor="daysSinceLastCrisis">Days Since Last Crisis</label>
@@ -48,7 +48,7 @@ return (
               
 
                 <button type="submit" className="sub def-btn">Submit</button>
-                </div>
+              
 
             </form>
     </div>

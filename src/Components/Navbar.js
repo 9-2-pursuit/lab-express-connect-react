@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 
@@ -8,9 +8,8 @@ export default function Navbar(){
     return (
         <nav>
             <h1 className="space" onClick={()=>navigate("/logs")}>Captain's Log</h1>
-            <div className="nav-btn">
-                <button onClick={()=>navigate("/logs/new")}>New Log</button>
-                </div>
+            
+           
             </nav>
     )
 }
